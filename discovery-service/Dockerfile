@@ -4,13 +4,18 @@ FROM azul/zulu-openjdk:17 as build
 # Set the current working directory inside the image
 WORKDIR /app
 
+RUN curl -L -o parent-pom.xml https://raw.githubusercontent.com/<username>/<repository>/<branch>/parent-pom.xml
+
+
 # Copy maven executable to the image
 COPY mvnw .
 COPY .mvn .mvn
-
 # Copy the pom.xml file
 COPY pom.xml .
+COPY ../pom.xml /app
 
+RUN dir -s
+RUN ls
 # Build all the dependencies in preparation to go offline.
 # This is a separate step so the dependencies will be cached unless
 # the pom.xml file has changed.

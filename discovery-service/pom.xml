@@ -5,6 +5,7 @@
         <groupId>com.unicard</groupId>
         <artifactId>user-management-cloud-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath/>
     </parent>
     <artifactId>discovery-service</artifactId>
     <name>discovery-service</name>
@@ -17,6 +18,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
+
+     <!-- <dependency>
+            <groupId>com.unicard</groupId>
+            <artifactId>user-management-cloud-parent</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency> -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

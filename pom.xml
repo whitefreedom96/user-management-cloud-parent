@@ -51,6 +51,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub Repository</name>
+            <url>https://github.com/whitefreedom96/usermanagementcloud/raw/{branch_or_tag}/</url>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>

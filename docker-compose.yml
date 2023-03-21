@@ -31,10 +31,25 @@ services:
     restart: always
     depends_on:
       - config-service    
+      - discovery-service
+    networks:
+      - backend
+  user-auth-service:
+    image: unicard.com/microservice-docker-user-auth-service:0.0.1-SNAPSHOT    
+    #container-name: gateway-service-container
+    hostname: user-auth-service
+    ports:
+      - 8081:8080   
+    restart: always
+    depends_on:
+      - config-service  
+      - discovery-service    
+      - gateway-service    
     networks:
       - backend
   db:
     image: mysql:8.0
+    hostname: db
     ports:
       - "3306:3306"
     restart: always

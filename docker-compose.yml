@@ -1,0 +1,53 @@
+#Docker Compose file Ref
+version: '3.7'
+#Define Services
+services:
+  discovery-service:
+    image: unicard.com/microservice-docker-discovery-service:0.0.1-SNAPSHOT
+    #container-name: discovery-service-container
+    hostname: discovery-service
+    ports:
+      - 8761:8761    
+    networks:
+      - backend
+
+  config-service:
+    image: unicard.com/microservice-docker-config-service:0.0.1-SNAPSHOT    
+    #container-name: config-service-container
+    hostname: config-service
+    ports:
+      - 8888:8888   
+    restart: always
+    depends_on:
+      - discovery-service     
+    networks:
+      - backend 
+  gateway-service:
+    image: unicard.com/microservice-docker-gateway-service:0.0.1-SNAPSHOT    
+    #container-name: gateway-service-container
+    hostname: gateway-service
+    ports:
+      - 8080:8080   
+    restart: always
+    depends_on:
+      - config-service    
+    networks:
+      - backend
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_USER: test
+      MYSQL_PASSWORD: 0287455a
+      MYSQL_ROOT_PASSWORD: 0287455a
+    networks:
+      - backend
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
+  frontend:
+ 
